@@ -8,17 +8,36 @@
 #include <time.h>
 #include <windows.h>
 
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
 #include "init.h"
 
-#define WIDTH 125
+#define WIDTH 100
 #define HEIGHT 150
 #define KEY_ENTER 0x157
-//using namespace std;
+using namespace std;
 
 HANDLE wHnd;    // Handle to write to the console.
 HANDLE rHnd;    // Handle to read from the console.
 
 int ch; //KEYBOARD INPUT
+
+void SetWindow(int Width, int Height)
+    {
+    _COORD coord;
+    coord.X = Width;
+    coord.Y = Height;
+
+    _SMALL_RECT Rect;
+    Rect.Top = 0;
+    Rect.Left = 0;
+    Rect.Bottom = Height - 1;
+    Rect.Right = Width - 1;
+
+    HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);      // Get Handle
+    SetConsoleScreenBufferSize(Handle, coord);            // Set Buffer Size
+    SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size
+    }
 
 void mainmenu()
 {
@@ -95,17 +114,11 @@ int main()
     keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
     noecho();			/* Don't echo() while we do getch */
 
-    // CHANGING WINDOW SIZE //
-    // Set up the handles for reading/writing:
-    wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
-    rHnd = GetStdHandle(STD_INPUT_HANDLE);
-    // Set up the required window size:
-    SMALL_RECT windowSize = {0, 0, WIDTH, HEIGHT};
-    SetConsoleWindowInfo(wHnd, 1, &windowSize);
-    // Change the console window size:
-    // Create a COORD to hold the buffer size:
-    COORD bufferSize = {10, 10};
-    SetConsoleScreenBufferSize(wHnd, bufferSize);
+	SetWindow(5,5);
+
+
+
+
 
     SetConsoleTitle("Loose Cannons");
     // END CONFIGURING WINDOW //
