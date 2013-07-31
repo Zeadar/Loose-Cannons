@@ -40,6 +40,7 @@ void SetWindow(int Width, int Height)
     }
 
 void spacecontinue(){
+ ch = getch();
  while(ch != ' ')
     {
         ch = getch();
@@ -115,16 +116,21 @@ curs_set(0); //make cursor invisible
     printw("                       i@B@B@B@@:  J@P@O:2,B@  ,@@@k. iB@   @B@M...B@:   r@Bii,B@:  @@@M...B@:   S@B:; @@E              \n");
     printw("                         .755J,    JB@u.j  @Bq  B@7.uv :B   B@Y vu  B      XB@B1    B@J vu  @     :EB@BG:    \n\n");
     attroff(COLOR_PAIR(1));
-    attron(COLOR_PAIR(2));
+
     printw("                                                   PRESS SPACE TO CONTINUE                                               ");
 
-    attroff(COLOR_PAIR(2));
+
 
     refresh();			/* Print it on to the real screen */
-    ch = getch();
     spacecontinue();
-
+    clear();
     refresh();
+
+
+
+
+
+
 }
 int main()
 {
