@@ -61,10 +61,10 @@ void menusplash()
 
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_WHITE, COLOR_RED);
-    init_pair(3, COLOR_RED, COLOR_BLACK);
-    init_pair(4, COLOR_RED, COLOR_BLACK);
+    init_pair(3, COLOR_BLACK, COLOR_WHITE);
+    init_pair(4, COLOR_BLACK, COLOR_RED);
 
-curs_set(0);
+curs_set(0); //make cursor invisible
 
     attron(COLOR_PAIR(1));
     printw("\n");
@@ -128,20 +128,15 @@ curs_set(0);
 }
 int main()
 {
-
+    SetConsoleTitle("Loose Cannons");
     initscr();			/* Start curses mode 		*/
     raw();/* Line buffering disabled	*/
-    keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
+    keypad(stdscr, TRUE);		/* We get key input		*/
 
     noecho();			/* Don't echo() while we do getch */
 
-	SetWindow(125,125);
+	//SetWindow(125,125);
 
-
-
-
-
-    SetConsoleTitle("Loose Cannons");
     // END CONFIGURING WINDOW //
     menusplash();
 
