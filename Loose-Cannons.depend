@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1375282250 source:d:\users\jeroen\documents\github\loose-cannons\main.cpp
+	<iostream>
+	<curses.h>
+	<cstdlib>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	<windows.h>
+	"init.h"
+
+1375280215 d:\users\jeroen\documents\github\loose-cannons\menu.cpp
+
+1375279399 d:\users\jeroen\documents\github\loose-cannons\init.h
+
+1375280054 source:d:\users\jeroen\documents\github\loose-cannons\menu.cpp
+	<iostream>
+	<curses.h>
+
