@@ -95,6 +95,7 @@ int main()
     keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
     noecho();			/* Don't echo() while we do getch */
 
+    // CHANGING WINDOW SIZE //
     // Set up the handles for reading/writing:
     wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
     rHnd = GetStdHandle(STD_INPUT_HANDLE);
@@ -107,6 +108,7 @@ int main()
     SetConsoleScreenBufferSize(wHnd, bufferSize);
 
     SetConsoleTitle("Loose Cannons");
+    // END CONFIGURING WINDOW //
     mainmenu();
 
 
