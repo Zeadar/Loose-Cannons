@@ -12,8 +12,6 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 #include "init.h"
 
-#define WIDTH 100
-#define HEIGHT 150
 #define KEY_ENTER 0x157
 using namespace std;
 
@@ -23,7 +21,7 @@ HANDLE rHnd;    // Handle to read from the console.
 int ch; //KEYBOARD INPUT
 
 void SetWindow(int Width, int Height)
-    {
+{
     _COORD coord;
     coord.X = Width;
     coord.Y = Height;
@@ -37,11 +35,12 @@ void SetWindow(int Width, int Height)
     HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);      // Get Handle
     SetConsoleScreenBufferSize(Handle, coord);            // Set Buffer Size
     SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size
-    }
+}
 
-void spacecontinue(){
- ch = getch();
- while(ch != ' ')
+void spacecontinue()
+{
+    ch = getch();
+    while(ch != ' ')
     {
         ch = getch();
         if(ch==' ')
@@ -58,17 +57,18 @@ void spacecontinue(){
 
 void menusplash()
 {
-   start_color();
+    start_color();
 
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_WHITE, COLOR_RED);
     init_pair(3, COLOR_BLACK, COLOR_WHITE);
     init_pair(4, COLOR_BLACK, COLOR_RED);
+    init_pair(5, COLOR_GREEN, COLOR_BLACK);
 
-curs_set(0); //make cursor invisible
+    curs_set(0); //make cursor invisible
 
     attron(COLOR_PAIR(1));
-    printw("\n");
+    printw("                                                                                                                        \n");
     printw("                              :B@NZB@BB  \n");
     printw("                                B@@M  MO   \n");
     printw("                                @B@B:  B                                                                                \n");
@@ -114,14 +114,68 @@ curs_set(0); //make cursor invisible
     printw("                     ,@BB .   U @v   X@8@ @@      @.vB@L@     Zi,B@r@   iB@   .,@@.   Oi,B@7@      i1B@BB               \n");
     printw("                      S@B@,   5@B,   .:@kUB@:     @r i@@B     B1 .@@B    @B    vB@    B5 .@@B    7B@U  @B@              \n");
     printw("                       i@B@B@B@@:  J@P@O:2,B@  ,@@@k. iB@   @B@M...B@:   r@Bii,B@:  @@@M...B@:   S@B:; @@E              \n");
-    printw("                         .755J,    JB@u.j  @Bq  B@7.uv :B   B@Y vu  B      XB@B1    B@J vu  @     :EB@BG:    \n\n");
+    printw("                         .755J,    JB@u.j  @Bq  B@7.uv :B   B@Y vu  B      XB@B1    B@J vu  @     :EB@BG:               \n\n\n\n");
     attroff(COLOR_PAIR(1));
-
     printw("                                                   PRESS SPACE TO CONTINUE                                               ");
 
 
-
     refresh();			/* Print it on to the real screen */
+    spacecontinue();
+    clear();
+
+
+    attron(COLOR_PAIR(5));
+    printw("                                                                                                  \n");
+    printw("                                                       1111111111                                      \n");
+    printw("                                                 1100011111111111000011                                   \n");
+    printw("                                              1001111              1111001                                \n");
+    printw("                                           10011       1 1 1 1 1 1      11001                             \n");
+    printw("                                         1001     1 1 1 1 11111 1 111 1    1101                           \n");
+    printw("                                       1001    11111 1 1 1 1111111 111 1 1   1101                         \n");
+    printw("                                      101   11111 1 1111111111111 111 111 1 1  101                        \n");
+    printw("                                     001   111 111 1111111 11111 1 1111111 1 1   00                       \n");
+    printw("                                    01  1111111 1111111 111 111 1 11111 11111 1   10                      \n");
+    printw("                                   01  11111 1 1111111 1         1 1111111 11111   10                     \n");
+    printw("                                  101 1 111 11111 1 1   11111111    1111111 11111   10                    \n");
+    printw("                                 101 11111 111 1 1   11001111110011  1111111 1 111  101                   \n");
+    printw("                                 01   1 111 1 111   101          101  1 1 11111 111  10                   \n");
+    printw("                                 01  1 1 11111 1   101             01  1 11111 11111 101                  \n");
+    printw("                                101 1111111 111 1 10                01  111111111 1   01                  \n");
+    printw("                                10  111111 111 1 111                101  111 1111111  10                  \n");
+    printw("                                11  11111 111 1  101        +        01 1111111 1111  10                  \n");
+    printw("                                10   11111111111 101                101  11111 1 111  10                  \n");
+    printw("                                101 1 111 1 111 1 10                01  111 11111111  01                  \n");
+    printw("                                 01  11111 111111  10              01  11111 111 111 101                  \n");
+    printw("                                 01  1111 1 1 111   101          101  111 111 1 111  10                   \n");
+    printw("                                 101   1 11111 1 1 1 11001     0011  11111111111 1  101                   \n");
+    printw("                                  101 1111111111111 1  10      01   1 1 1 111 1 1   10                    \n");
+    printw("                                   01  111 1111111 1  101       01   11111 11111   10                     \n");
+    printw("                                    01    11111 1 1   01        101 1 111 11111   10                      \n");
+    printw("                                     001   1 1 1 11  10          01  1 11111 1   10                       \n");
+    printw("                                      101   1 1 111 101           01  11111 1  100                        \n");
+    printw("                                       1001  1 1 1 110            101  1 1   1101                  \n");
+    printw("                                         1001      10              01      1101                \n");
+    printw("                                           10011  101              101  11001                 \n");
+    printw("                                              100100                101001                                \n");
+    printw("                                                 11                  11                                   \n");
+    printw("                                                                                             \n");
+    printw("                                                                                             \n");
+    printw("                                                                                             \n");
+    printw("                  00000   010000    10000   010000       100000   10000   0     01  0 101 000001  10000   \n");
+    printw("                 00   00  001  001 00   001 001  001    00    0  00   10  01    00  001  00   01 00   101 \n");
+    printw("                101    01 00    00 00111000 00    00    0011     0     01 0     00  0    0       01111100 \n");
+    printw("                101    01 00    00 00       00    00      11000  0     01 0     00  0   10       01       \n");
+    printw("                100   00  00   101 00   11  00    00          00 01    01 00    00  0    01      01       \n");
+    printw("                 1000001  0000001  1000000  00    00    0001100  1000000   0000100  0    1000000  000000  \n");
+    printw("                          00                                                                              \n");
+    printw("                          00 Source-Code available on: https://github.com/Paradux/Loose-Cannons           \n");
+    printw("                          00                                                                              \n");
+    printw("                                        \n\n\n\n\n");
+    attroff(COLOR_PAIR(5));
+
+    printw("                                                   PRESS SPACE TO CONTINUE                     ");
+
+    refresh();
     spacecontinue();
     clear();
     refresh();
@@ -134,20 +188,33 @@ curs_set(0); //make cursor invisible
 }
 int main()
 {
-    SetConsoleTitle("Loose Cannons");
+// RESIZING AND CHANGING WINDOW BUFFER // //FIRST VERSION IN COMMENTS DOESNT WORK WI
+
+    // Set up the handles for reading/writing:
+    wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
+    rHnd = GetStdHandle(STD_INPUT_HANDLE);
+    // Change the window title:
+    SetConsoleTitle(TEXT("Loose Cannons"));
+    // Set up the required window size:
+    SMALL_RECT windowSize = {0, 0, 125, 50};
+    // Change the console window size:
+    SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
+    // Create a COORD to hold the buffer size:
+    COORD bufferSize = {126, 51};
+    // Change the internal buffer size:
+    SetConsoleScreenBufferSize(wHnd, bufferSize);
+
+// PDCURSES/NCURSES INITIALIZING//
     initscr();			/* Start curses mode 		*/
     raw();/* Line buffering disabled	*/
     keypad(stdscr, TRUE);		/* We get key input		*/
 
     noecho();			/* Don't echo() while we do getch */
 
-	//SetWindow(125,125);
-
-    // END CONFIGURING WINDOW //
+//STARTING MENU
     menusplash();
 
-
-
+// ENDING APPLICATION
     endwin();			/* End curses mode		  */
     return 0;
 }
