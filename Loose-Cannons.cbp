@@ -25,6 +25,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="D:\CodeBlocks\pdcurses33\win32\pdcurses.a" />
 				</Linker>
 			</Target>
 		</Build>
@@ -32,6 +33,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="init.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

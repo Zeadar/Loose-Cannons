@@ -39,8 +39,34 @@ void SetWindow(int Width, int Height)
     SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size
     }
 
-void mainmenu()
+void spacecontinue(){
+ while(ch != ' ')
+    {
+        ch = getch();
+        if(ch==' ')
+        {
+            break;
+        }
+
+
+
+
+    }
+
+}
+
+void menusplash()
 {
+   start_color();
+
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_WHITE, COLOR_RED);
+    init_pair(3, COLOR_RED, COLOR_BLACK);
+    init_pair(4, COLOR_RED, COLOR_BLACK);
+
+curs_set(0);
+
+    attron(COLOR_PAIR(1));
     printw("\n");
     printw("                              :B@NZB@BB  \n");
     printw("                                B@@M  MO   \n");
@@ -88,21 +114,15 @@ void mainmenu()
     printw("                      S@B@,   5@B,   .:@kUB@:     @r i@@B     B1 .@@B    @B    vB@    B5 .@@B    7B@U  @B@              \n");
     printw("                       i@B@B@B@@:  J@P@O:2,B@  ,@@@k. iB@   @B@M...B@:   r@Bii,B@:  @@@M...B@:   S@B:; @@E              \n");
     printw("                         .755J,    JB@u.j  @Bq  B@7.uv :B   B@Y vu  B      XB@B1    B@J vu  @     :EB@BG:    \n\n");
-    printw("                                                   PRESS SPACE TO CONTINUE");
+    attroff(COLOR_PAIR(1));
+    attron(COLOR_PAIR(2));
+    printw("                                                   PRESS SPACE TO CONTINUE                                               ");
+
+    attroff(COLOR_PAIR(2));
+
     refresh();			/* Print it on to the real screen */
     ch = getch();
-    while(ch != ' ')
-    {
-        ch = getch();
-        if(ch==' ')
-        {
-            break;
-        }
-
-
-
-
-    }
+    spacecontinue();
 
     refresh();
 }
@@ -112,9 +132,10 @@ int main()
     initscr();			/* Start curses mode 		*/
     raw();/* Line buffering disabled	*/
     keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
+
     noecho();			/* Don't echo() while we do getch */
 
-	SetWindow(5,5);
+	SetWindow(125,125);
 
 
 
@@ -122,7 +143,7 @@ int main()
 
     SetConsoleTitle("Loose Cannons");
     // END CONFIGURING WINDOW //
-    mainmenu();
+    menusplash();
 
 
 
