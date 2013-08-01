@@ -12,14 +12,24 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 #include "init.h"
 
-#define KEY_ENTER 0x157
+#define KEY_ENTER 25
 using namespace std;
 
 HANDLE wHnd;    // Handle to write to the console.
 HANDLE rHnd;    // Handle to read from the console.
 
-int ch; //KEYBOARD INPUT
+char *choices[] = {
+			"New Game\n",
+			"Load Game\n",
+			"Help\n",
+			"Credits\n",
+			"Exit\n",
+		  };
+int n_choices = sizeof(choices) / sizeof(char *);
 
+
+int ch; //KEYBOARD INPUT
+int highlight = 1;
 void SetWindow(int Width, int Height)
 {
     _COORD coord;
@@ -54,6 +64,22 @@ void spacecontinue()
     }
 
 }
+
+void remove_scrollbar()
+{
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO info;
+    GetConsoleScreenBufferInfo(handle, &info);
+    COORD new_size =
+    {
+        info.srWindow.Right - info.srWindow.Left + 1,
+        info.srWindow.Bottom - info.srWindow.Top + 1
+    };
+    SetConsoleScreenBufferSize(handle, new_size);
+}
+
+
+
 
 void menusplash()
 {
@@ -116,7 +142,7 @@ void menusplash()
     printw("                       i@B@B@B@@:  J@P@O:2,B@  ,@@@k. iB@   @B@M...B@:   r@Bii,B@:  @@@M...B@:   S@B:; @@E              \n");
     printw("                         .755J,    JB@u.j  @Bq  B@7.uv :B   B@Y vu  B      XB@B1    B@J vu  @     :EB@BG:               \n\n\n\n");
     attroff(COLOR_PAIR(1));
-    printw("                                                   PRESS SPACE TO CONTINUE                                               ");
+    printw("                                                 PRESS SPACE TO CONTINUE                                               ");
 
 
     refresh();			/* Print it on to the real screen */
@@ -173,19 +199,62 @@ void menusplash()
     printw("                                        \n\n\n\n\n");
     attroff(COLOR_PAIR(5));
 
-    printw("                                                   PRESS SPACE TO CONTINUE                     ");
-
-    refresh();
+    printw("                                                 PRESS SPACE TO CONTINUE                     ");
     spacecontinue();
-    clear();
-    refresh();
+clear();
 
 
 
+//menu:
+while(1){
+for(int i = 0;i<5;i++){
 
 
+    if(highlight ==i+1){
+    attron(COLOR_PAIR(3));
+    printw(choices[i]);
+attroff(COLOR_PAIR(3));
+    }
+ else{
+        printw(choices[i]);
+
+    }
 
 }
+ch = getch();
+
+if(ch==KEY_DOWN)
+        {
+            highlight++;
+            if(highlight>5){highlight = 1;}
+            clear();
+
+       // goto menu;
+
+        }
+        else if(ch==KEY_UP)
+        {
+            highlight--;
+            if(highlight<1){highlight = 5;}
+            clear();
+          //  goto menu;
+        }
+        else{
+            clear();
+          //  goto menu;
+        }
+
+
+if(ch==' '){
+    break;
+
+}
+
+}
+}
+
+
+
 int main()
 {
 // RESIZING AND CHANGING WINDOW BUFFER // //FIRST VERSION IN COMMENTS DOESNT WORK WI
@@ -196,14 +265,15 @@ int main()
     // Change the window title:
     SetConsoleTitle(TEXT("Loose Cannons"));
     // Set up the required window size:
-    SMALL_RECT windowSize = {0, 0, 125, 50};
+    SMALL_RECT windowSize = {0, 0, 120, 50};
     // Change the console window size:
     SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
     // Create a COORD to hold the buffer size:
-    COORD bufferSize = {126, 51};
+    COORD bufferSize = {120, 50};//OBSOLETE
     // Change the internal buffer size:
-    SetConsoleScreenBufferSize(wHnd, bufferSize);
+    SetConsoleScreenBufferSize(wHnd, bufferSize); //OBSOLETE
 
+    remove_scrollbar();
 // PDCURSES/NCURSES INITIALIZING//
     initscr();			/* Start curses mode 		*/
     raw();/* Line buffering disabled	*/
@@ -214,7 +284,9 @@ int main()
 //STARTING MENU
     menusplash();
 
+   refresh();
 // ENDING APPLICATION
     endwin();			/* End curses mode		  */
     return 0;
 }
+
