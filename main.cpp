@@ -18,13 +18,14 @@ using namespace std;
 HANDLE wHnd;    // Handle to write to the console.
 HANDLE rHnd;    // Handle to read from the console.
 
-char *choices[] = {
-			"New Game\n",
-			"Load Game\n",
-			"Help\n",
-			"Credits\n",
-			"Exit\n",
-		  };
+char *choices[] =
+{
+    "New Game\n",
+    "Load Game\n",
+    "Help\n",
+    "Credits\n",
+    "Exit\n",
+};
 int n_choices = sizeof(choices) / sizeof(char *);
 
 
@@ -201,56 +202,68 @@ void menusplash()
 
     printw("                                                 PRESS SPACE TO CONTINUE                     ");
     spacecontinue();
-clear();
+    clear();
 
 
 
 //menu:
-while(1){
-for(int i = 0;i<5;i++){
+    while(1)
+    {
+        for(int i = 0; i<5; i++)
+        {
 
 
-    if(highlight ==i+1){
-    attron(COLOR_PAIR(3));
-    printw(choices[i]);
-attroff(COLOR_PAIR(3));
-    }
- else{
-        printw(choices[i]);
+            if(highlight ==i+1)
+            {
+                attron(COLOR_PAIR(3));
+                printw(choices[i]);
+                attroff(COLOR_PAIR(3));
+            }
+            else
+            {
+                printw(choices[i]);
 
-    }
+            }
 
-}
-ch = getch();
+        }
+        ch = getch();
 
-if(ch==KEY_DOWN)
+        if(ch==KEY_DOWN)
         {
             highlight++;
-            if(highlight>5){highlight = 1;}
+            if(highlight>5)
+            {
+                highlight = 1;
+            }
             clear();
 
-       // goto menu;
+            // goto menu;
 
         }
         else if(ch==KEY_UP)
         {
             highlight--;
-            if(highlight<1){highlight = 5;}
+            if(highlight<1)
+            {
+                highlight = 5;
+            }
             clear();
-          //  goto menu;
+            //  goto menu;
         }
-        else{
+        else
+        {
             clear();
-          //  goto menu;
+            //  goto menu;
         }
 
 
-if(ch==' '){
-    break;
+        if(ch==' ')
+        {
+            break;
 
-}
+        }
 
-}
+    }
 }
 
 
@@ -284,7 +297,7 @@ int main()
 //STARTING MENU
     menusplash();
 
-   refresh();
+    refresh();
 // ENDING APPLICATION
     endwin();			/* End curses mode		  */
     return 0;
